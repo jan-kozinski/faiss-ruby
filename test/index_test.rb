@@ -248,6 +248,7 @@ class IndexTest < Minitest::Test
     index_map = Faiss::IndexIDMap2.new(index)
     index_map.add_with_ids([[1, 1, 2, 1], [5, 4, 6, 5], [1, 2, 1, 2]], [100, 101, 102])
     assert_equal [100, 101, 102], index_map.id_map.to_a
+    assert index_map.id_map.kind_of?(Numo::Int64)
   end
 
   def test_add_with_ids_id_map2
@@ -264,7 +265,6 @@ class IndexTest < Minitest::Test
 
     assert_equal [[0, 3, 57], [0, 54, 57], [0, 3, 54]], distances.to_a
     assert_equal [[100, 102, 101], [101, 102, 100], [102, 100, 101]], ids.to_a
-    assert ids.kind_of?(Numo::Int64)
   end
 
   def test_add_with_ids_ivf_flat
