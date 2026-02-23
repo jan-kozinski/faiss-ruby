@@ -285,6 +285,9 @@ void init_index(Rice::Module& m) {
     .define_method(
       "id_map",
       [](faiss::IndexIDMap2 &self) {
-        return self.id_map;
+        auto n = self.id_map.size();
+        auto ids = numo::Int64({n});
+        std::copy(self.id_map.begin(), self.id_map.end(), ids.write_ptr());
+        return ids;
       });
 }

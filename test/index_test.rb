@@ -264,6 +264,7 @@ class IndexTest < Minitest::Test
 
     assert_equal [[0, 3, 57], [0, 54, 57], [0, 3, 54]], distances.to_a
     assert_equal [[100, 102, 101], [101, 102, 100], [102, 100, 101]], ids.to_a
+    assert ids.kind_of?(Numo::Int64)
   end
 
   def test_add_with_ids_ivf_flat
